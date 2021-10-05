@@ -1,21 +1,19 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
-import { useScene, useUpdate, useCamera } from './threeProvider';
-import * as THREE from 'three';
+import React, { useEffect, useRef } from 'react';
+import { useScene, useCamera } from './threeProvider';
 import { useLocation } from 'react-router-dom';
-import { useLoadingStatus } from './loadingProvider';
+import { useIsLoading } from './loadingProvider';
 
 import StartPlanet from './planets/startPlanet';
 import ContactPlanet from './planets/contactPlanet';
 import ProjectsPlanet from './planets/projectsPlanet';
 import NotFoundPlanet from './planets/notFoundPlanet';
 import Sun from './planets/sun';
-
 import Lighting from './lighting';
 
 export default function World()
 {
-    const scene = useScene();
-    scene.background = new THREE.Color(0xabd7f5);
+    const camStateRef = useCamera();
+    const isLoading = useIsLoading();
 
     const startPlanet = useRef();
     const contactPlanet = useRef();
@@ -25,10 +23,6 @@ export default function World()
 
     const location = useLocation();
     const path = location.pathname.toLowerCase();
-
-    const camStateRef = useCamera();
-
-    const loadingStatus = useLoadingStatus()
 
     useEffect(() =>
     {
@@ -51,11 +45,9 @@ export default function World()
         }
 
         let targetPosition = targetPlanet.current?.position;
-
         if (!targetPosition) return;
-
         camStateRef.current.target = targetPosition;
-    }, [ path, loadingStatus ]);
+    }, [ path, isLoading ]);
 
     return (
         <>

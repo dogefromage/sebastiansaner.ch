@@ -23,11 +23,6 @@ export default function StartPlanet({ objRef })
         loader.load('assets/start_planet/start_planet.gltf', (gltf) => {
             const root = gltf.scene;
 
-            root.traverse((o) =>
-            {
-                o.castShadow = true;
-                o.receiveShadow = true;
-            })
             scene.add(root);
             objRef.current = root;
 
@@ -42,16 +37,16 @@ export default function StartPlanet({ objRef })
             worldRef.current = world;
 
             let ground = world.children.find(o => o.name === 'ground');
-            ground.material = new THREE.MeshPhongMaterial({
+            setMaterial(ground, new THREE.MeshPhongMaterial({
                 color:0xA0E760,
                 shininess: 20,
-            });
+            }));
 
             let sea = world.children.find(child => child.name === 'sea');
-            sea.material = new THREE.MeshPhongMaterial({
+            setMaterial(sea, new THREE.MeshPhongMaterial({
                 color:0x7392E6,
                 shininess: 160,
-            });
+            }));
 
             let txtLoader = new THREE.TextureLoader();
 
@@ -66,20 +61,6 @@ export default function StartPlanet({ objRef })
             setMaterial(rocks, new THREE.MeshPhongMaterial({
                 map: rockTexture
             }));
-
-            let dirLight = new THREE.DirectionalLight(0xfffebf, .6);
-            dirLight.position.set(3, 5, 3);
-            dirLight.castShadow = true;
-            dirLight.shadow.camera.top = 2.5;
-            dirLight.shadow.camera.bottom = -2.5;
-            dirLight.shadow.camera.left = -2.5;
-            dirLight.shadow.camera.right =2.5;
-            dirLight.shadow.camera.near = 2.5;
-            dirLight.shadow.camera.far = 10;
-            dirLight.target = root;       
-            dirLight.name = 'light';
-            
-            root.add(dirLight);
 
             root.addEventListener('click', (e) =>
             {
@@ -120,7 +101,5 @@ export default function StartPlanet({ objRef })
         rotate(cloudRef.current, time, -0.06, 0.02)
     });
 
-    return (
-        null
-    );
+    return null;
 }

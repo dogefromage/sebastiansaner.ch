@@ -3,7 +3,7 @@ import { a, useTransition } from 'react-spring';
 
 const LoadingContext = React.createContext();
 
-export function useLoadingStatus()
+export function useIsLoading()
 {
     return useContext(LoadingContext)[0];
 }
@@ -71,7 +71,7 @@ export function LoadingProvider({ children })
                     </a.div>
                 )
             }
-            <LoadingContext.Provider value={[ loadingStatus, setLoadingStatus ]}>
+            <LoadingContext.Provider value={[ isLoading, setLoadingStatus ]}>
                 { children }
             </LoadingContext.Provider>
         </>

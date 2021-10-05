@@ -36,6 +36,8 @@ export function setMaterial(obj, material)
 {
     obj.traverse((o) =>
     {
+        o.castShadow = true;
+        o.receiveShadow = true;
         o.material = material;
     });
 }

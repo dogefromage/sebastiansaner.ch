@@ -43,9 +43,10 @@ body
 {
     font-size: 1.5rem;
     text-decoration: none;
-    margin: 1rem 2rem;
+    margin: 1rem 3vw;
 
     width: 10rem;
+    min-width: 6em;
     height: 2.6rem;
     display: flex;
     justify-content: center;
@@ -59,10 +60,17 @@ body
 
 .link:hover
 {
-    /* box-shadow: 0 0 20px #00000011; */
-    /* font-size: 1.7rem; */
-
+    box-shadow: 0 0 1em #00000033;
     background-color: #ffffff33;
+}
+
+@media handheld 
+{
+    .link:hover
+    {
+        box-shadow: none;
+        background-color: transparent;
+    }
 }
 
 .link:active
@@ -88,3 +96,43 @@ body
     align-items: center;
     justify-content: center;
 }
+
+
+/* Content */
+
+.content-wrapper
+{
+    display: flex;
+    justify-content: center;
+    
+    position: absolute;
+    width: 100%;
+    min-height: 22%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+}
+
+.content-card
+{
+    box-sizing: border-box;
+    background-color: #ffffff33;
+    box-shadow: 0 0 1em #00000033;
+    border-radius: 1em;
+    max-width: 640px;
+    width: 95%;
+    padding: 0.25em 1em;
+    margin-bottom: 3rem;
+}
+
+.content-card h1
+{
+    margin: 0.2em 0;
+}
+
+.content-card p
+{
+    margin: 0.2em 0;
+}
+
