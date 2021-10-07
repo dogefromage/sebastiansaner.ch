@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ContentCard from './contentCard';
 import { useLocation } from 'react-router-dom';
-import { useTransition, a } from 'react-spring';
+import { useTransition, a, config } from 'react-spring';
 import { useIsLoading } from './loadingProvider';
 
 function Start()
 {
     return (
         <ContentCard>
-            <h1>Start</h1>
-            <p>Eveniet corrupti earum odit porro ipsam. Nihil ut doloribus voluptas quidem quas quis laborum. Sed nemo expedita nam enim enim. Reiciendis labore quibusdam nisi. Mollitia ut distinctio dicta sit dignissimos. Voluptate qui nobis nemo tempore. Itaque vitae minus corporis officia tenetur magnam. Repellat quaerat doloribus ad qui. Voluptatem aut ut beatae eveniet qui. Perferendis voluptatem asperiores ullam non eius.</p>
+            <h1>Hello :)</h1>
+            <p>This is my personal page. You can click on planets to explore them.</p>
         </ContentCard>
     )
 }
@@ -56,7 +56,7 @@ export default function Pagecontent({ isNearPlanet })
         setTimeout(() =>
         {
             setWaiting(false);
-        }, 2000)
+        }, 1000);
     }, []);
 
     const visible = !waiting && !isLoading && !isNearPlanet
@@ -65,6 +65,7 @@ export default function Pagecontent({ isNearPlanet })
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
+        config: config.gentle,
     });
 
     return transition((styles, { path, visible }) =>

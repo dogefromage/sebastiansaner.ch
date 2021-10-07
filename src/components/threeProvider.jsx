@@ -5,6 +5,7 @@ import { lerp } from '../utils';
 import { EventRayCaster } from '../threeDomEvents';
 import World from './world';
 import PageContent from './pageContent';
+import { TWEEN } from 'three/examples/jsm/libs/tween.module.min'
 
 const SceneContext = React.createContext();
 const CameraContext = React.createContext();
@@ -143,6 +144,7 @@ export default function ThreeProvider({ children, canvas })
                 .clone().sub(_controls.target).multiplyScalar(t);
             _controls.target.add(deltaMove);
             _camera.position.add(deltaMove);
+            
             lightParent.position.copy(_camera.position);
 
             _controls.update();

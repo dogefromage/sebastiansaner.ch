@@ -122,17 +122,17 @@ body
     border-radius: 1em;
     max-width: 640px;
     width: 95%;
-    padding: 0.25em 1em;
+    padding: 1rem;
     margin-bottom: 3rem;
 }
 
 .content-card h1
 {
-    margin: 0.2em 0;
+    margin: 0 0 .5rem;
 }
 
 .content-card p
 {
-    margin: 0.2em 0;
+    margin: 0.2rem 0;
 }
 
