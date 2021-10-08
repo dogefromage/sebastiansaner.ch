@@ -136,3 +136,58 @@ body
     margin: 0.2rem 0;
 }
 
+.content-card a
+{
+    text-decoration: none;
+    border-bottom: 1px dotted black;
+    font-weight: bold;
+}
+
+.content-card a:visited
+{
+    color: initial;
+}
+
+.email
+{
+    position: relative;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip
+{
+    opacity: 0;
+    pointer-events: none;
+
+    width: 10em;
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    
+    top: 120%;
+    left: 50%;
+    margin-left: -80px;
+
+    position: absolute;
+    z-index: 1;
+
+    transition: opacity 0.5s;
+}
+
+.tooltip::after 
+{
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #333333 transparent;
+}
+
+.email:hover .tooltip {
+    opacity: 1;
+}

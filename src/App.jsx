@@ -12,7 +12,7 @@ function App()
 
     useEffect(() =>
     {
-        console.log('The source code for this page is available at AAAAAAAAAAAAAAA');
+        console.log('The source code for this page is available at https://github.com/dogefromage/sebastiansaner.ch');
     }, []);
 
     useEffect(() =>
