@@ -1,4 +1,4 @@
-# sebastiansaner.ch
+# [sebastiansaner.ch](http://sebastiansaner.ch)
 
 I recently learned React and thought it would be a great idea to create a personal website with it. Inspired by another website, I chose to use the threejs library to make an interactive 3d world.
 
