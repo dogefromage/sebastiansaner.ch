@@ -3,6 +3,7 @@ import { useScene, useUpdate } from './../threeProvider';
 import * as THREE from 'three';
 import { useOrbit } from './planet';
 import { useHistory } from 'react-router-dom';
+import { absPath } from '../../utils';
 
 export default function ContactPlanet({ objRef })
 {

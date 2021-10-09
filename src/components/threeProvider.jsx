@@ -7,6 +7,10 @@ import World from './world';
 import PageContent from './pageContent';
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min'
 
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
+import { SSAOPass } from 'three/examples/jsm/postprocessing/SSAOPass';
+
 const SceneContext = React.createContext();
 const CameraContext = React.createContext();
 const UpdateContext = React.createContext();
@@ -105,6 +109,11 @@ export default function ThreeProvider({ children, canvas })
         // const helper = new THREE.CameraHelper( dirLight.shadow.camera );
         // _scene.add( helper );
 
+        const _composer = new EffectComposer(_renderer);
+        _composer.addPass(new RenderPass(_scene, _camera));
+
+        
+
         window.addEventListener('resize', () =>
         {
             _camera.aspect = window.innerWidth / window.innerHeight;
@@ -152,7 +161,7 @@ export default function ThreeProvider({ children, canvas })
             let nearPlanet = _controls.getDistance() < 3;
             setIsNearPlanet(nearPlanet);
 
-            _renderer.render(_scene, _camera);
+            _composer.render();
 
             lastTime = time;
         }

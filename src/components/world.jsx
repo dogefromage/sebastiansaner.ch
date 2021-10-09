@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useScene, useCamera } from './threeProvider';
-import { useLocation } from 'react-router-dom';
+import { useUrl } from '../utils';
 import { useIsLoading } from './loadingProvider';
 
 import StartPlanet from './planets/startPlanet';
@@ -21,8 +21,7 @@ export default function World()
     const notFoundPlanet = useRef();
     const sunRef = useRef();
 
-    const location = useLocation();
-    const path = location.pathname.toLowerCase();
+    const path = useUrl();
 
     useEffect(() =>
     {

@@ -5,6 +5,7 @@ import { orbit, rotate, setMaterial } from './planet';
 import { useGltfLoader } from '../../loaders';
 import { useHistory } from 'react-router-dom';
 import { useLoading } from '../loadingProvider';
+import { absPath } from '../../utils';
 
 export default function ProjectsPlanet({ objRef })
 {
@@ -18,7 +19,7 @@ export default function ProjectsPlanet({ objRef })
         loading.start();
 
         let loader = useGltfLoader();
-        loader.load('assets/projects_planet/projects_planet.gltf', (gltf) => {
+        loader.load(absPath('assets/projects_planet/projects_planet.gltf'), (gltf) => {
             const root = gltf.scene;
 
             root.traverse((o) =>
@@ -47,19 +48,19 @@ export default function ProjectsPlanet({ objRef })
             let txtLoader = new THREE.TextureLoader();
 
             let trees = world.children.find(child => child.name === 'trees');
-            let treeTexture = txtLoader.load( 'assets/projects_planet/tree.png' );
+            let treeTexture = txtLoader.load(absPath('assets/projects_planet/tree.png'));
             setMaterial(trees, new THREE.MeshPhongMaterial({
                 map: treeTexture
             }));
 
             let rocks = world.children.find(child => child.name === 'rocks');
-            let rockTexture = txtLoader.load( 'assets/projects_planet/rock.png' );
+            let rockTexture = txtLoader.load(absPath('assets/projects_planet/rock.png'));
             setMaterial(rocks, new THREE.MeshPhongMaterial({
                 map: rockTexture
             }));
 
             let pyramids = world.children.find(child => child.name === 'pyramids');
-            let pyramidsTexture = txtLoader.load( 'assets/projects_planet/pyramid.png' );
+            let pyramidsTexture = txtLoader.load(absPath('assets/projects_planet/pyramid.png'));
             setMaterial(pyramids, new THREE.MeshPhongMaterial({
                 map: pyramidsTexture
             }));

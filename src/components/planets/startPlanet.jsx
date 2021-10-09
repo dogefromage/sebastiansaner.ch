@@ -5,6 +5,7 @@ import { orbit, rotate, setMaterial } from './planet';
 import { useGltfLoader } from '../../loaders';
 import { useHistory } from 'react-router-dom';
 import { useLoading } from '../loadingProvider';
+import { absPath } from '../../utils';
 
 export default function StartPlanet({ objRef })
 {
@@ -20,7 +21,7 @@ export default function StartPlanet({ objRef })
         loading.start();
 
         let loader = useGltfLoader();
-        loader.load('assets/start_planet/start_planet.gltf', (gltf) => {
+        loader.load(absPath('assets/start_planet/start_planet.gltf'), (gltf) => {
             const root = gltf.scene;
 
             scene.add(root);
@@ -51,13 +52,13 @@ export default function StartPlanet({ objRef })
             let txtLoader = new THREE.TextureLoader();
 
             let trees = world.children.find(child => child.name === 'trees');
-            let treeTexture = txtLoader.load( 'assets/start_planet/tree.png' );
+            let treeTexture = txtLoader.load(absPath('assets/start_planet/tree.png'));
             setMaterial(trees, new THREE.MeshPhongMaterial({
                 map: treeTexture
             }));
 
             let rocks = world.children.find(child => child.name === 'rocks');
-            let rockTexture = txtLoader.load( 'assets/start_planet/rock.png' );
+            let rockTexture = txtLoader.load(absPath('assets/start_planet/rock.png'));
             setMaterial(rocks, new THREE.MeshPhongMaterial({
                 map: rockTexture
             }));
@@ -72,20 +73,17 @@ export default function StartPlanet({ objRef })
         {
             // loading.status(xhr.loaded / xhr.total);
         }, (error) => {
-            console.log(error);
+            console.error(error);
             loading.abort();
         });
 
-        // //dummy
-        // let planet = new THREE.Mesh(
-        //     new THREE.DodecahedronGeometry(0, 1),
-        //     new THREE.MeshBasicMaterial({ color: 0x91db8f }),
-        // )
-        // planet.material.flatShading = true;
-        // scene.add(planet);
-        // objRef.current = planet;
-
         return () => {
+
+            /** 
+             * must improve cleanup
+             * textures, nested models must be also disposed
+            */
+
             if (objRef.current)
             {
                 scene.remove(objRef.current);

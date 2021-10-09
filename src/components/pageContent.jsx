@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ContentCard from './contentCard';
-import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useUrl } from '../utils';
 import { useTransition, a, config } from 'react-spring';
 import { useIsLoading } from './loadingProvider';
 import useObject from '../hooks/useObject';
@@ -10,7 +11,7 @@ function Start()
     return (
         <ContentCard>
             <h1>{ "<" + "Hello" + " />" } :)</h1>
-            <p>\\: This is my personal page. Click on planets to explore them!</p>
+            <p>> This is my personal page. Click on planets to explore them!</p>
         </ContentCard>
     )
 }
@@ -21,7 +22,7 @@ function Projects()
         <ContentCard>
             <h1>{ "{ Projects }" }</h1>
             <p>
-                Most of my projects (including this one) can be found on my&nbsp;
+                > Most of my projects (including this one) can be found on my&nbsp;
                 <a href="https://github.com/dogefromage" target="_blank">
                     <i className="fab fa-github"></i>
                     &nbsp;GitHub.
@@ -50,7 +51,7 @@ const copyText = (
 
 const doneText = (
     <>
-        { 'Done ' }
+        { 'Copied ' }
         <i class="fas fa-check"></i> 
     </>
 );
@@ -82,6 +83,7 @@ function Contact()
             <div>
                 <h1>\Contact$</h1>
             </div>
+            >&nbsp;
             <a className="email" 
                 onClick={onClick}
                 onMouseLeave={onMouseLeave}
@@ -89,6 +91,19 @@ function Contact()
                 <span>seb.sa@eblcom.ch</span>
                 <span className='tooltip'>{ toolTip }</span>
             </a>
+        </ContentCard>
+    )
+}
+
+function NotFound()
+{
+    return (
+        <ContentCard>
+            <h1>&Whoops!</h1>
+            <p>
+                > This page doesn't exist.&nbsp; 
+                <Link to='/'>Take me back</Link>
+            </p>
         </ContentCard>
     )
 }
@@ -101,15 +116,14 @@ function Switch({ path })
         case '/contact':    return <Contact />
         case '/projects':   return <Projects />
     }
-    return null;
+    return <NotFound />;
 }
 
 export default function Pagecontent({ isNearPlanet })
 {
     const [ waiting, setWaiting ] = useState(true);
 
-    const location = useLocation();
-    const path = location.pathname.toLowerCase();
+    const path = useUrl();
     const isLoading = useIsLoading();
 
     useEffect(() =>

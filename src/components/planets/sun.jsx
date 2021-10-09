@@ -11,7 +11,10 @@ export default function Sun({ objRef })
     {
         let planet = new THREE.Mesh(
             new THREE.DodecahedronGeometry(1.5, 1),
-            new THREE.MeshStandardMaterial({ color: 0xfce303, emissive: 0x5c5302 }),
+            new THREE.MeshStandardMaterial({ 
+                color: 0xfce303, 
+                emissive: 0xb7a500
+            }),
         )
         planet.material.flatShading = true;
         planet.castShadow = true;
