@@ -16,6 +16,7 @@ export default function Sun({ objRef })
                 emissive: 0xb7a500
             }),
         )
+
         planet.material.flatShading = true;
         planet.castShadow = true;
         planet.receiveShadow = true;

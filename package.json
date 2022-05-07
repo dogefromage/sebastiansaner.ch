@@ -1,22 +1,47 @@
 {
-  "name": "ReplitReactjsProject",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
-  },
+  "name": "sebastiansaner",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "-": "0.0.1",
-    "@types/react": "^17.0.13",
-    "@types/react-dom": "^17.0.8",
-    "@vitejs/plugin-react-refresh": "^1.3.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^5.3.0",
-    "react-spring": "^9.2.5",
-    "three": "^0.132.2",
-    "three.interaction": "^0.2.3",
-    "vite": "^2.3.8"
+    "@apollo/client": "^3.6.1",
+    "@contentful/rich-text-react-renderer": "^15.12.1",
+    "@types/node": "^16.11.32",
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.3",
+    "react": "^18.1.0",
+    "react-device-detect": "^2.2.2",
+    "react-dom": "^18.1.0",
+    "react-resize-detector": "^7.0.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "^5.0.1",
+    "react-spring": "^9.4.5-beta.1",
+    "react-swipeable": "^7.0.0",
+    "sass": "^1.51.0",
+    "three": "^0.140.0",
+    "typescript": "^4.6.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "schema:download": "apollo service:download --endpoint=https://graphql.contentful.com/content/v1/spaces/yaiyfegwjzlh?access_token=NpFpzDQmwPLXLC9uZ0qjr_xNsPJuDbvtKshxx9dsd9U graphql-schema.json",
+    "codegen": "npm run schema:download && apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --tagName=gql"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/three": "^0.139.0",
+    "apollo": "^2.33.10"
   }
 }
