@@ -1,6 +1,6 @@
 
 
-export function joinClasses(...classes: (string | undefined | null)[])
+export function joinClasses(...classes: (string | undefined | null | false)[])
 {
     return classes.reduce<string>((last, current) =>
     {

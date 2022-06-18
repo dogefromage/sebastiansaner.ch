@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import { Game } from '../../game/Game';
-import SolarSystem from '../SolarSystem/SolarSystem';
 import styles from './GameCanvas.module.scss';
 
 interface Props
@@ -13,8 +12,7 @@ const GameCanvas = ({ }: Props) =>
 {
     const { width, height, ref: wrapperRef } = useResizeDetector();
     const canvasRef = useRef<HTMLCanvasElement>(null);
-
-    const [ game, setGame ] = useState<Game>();
+    const gameRef = useRef<Game>();
 
     useEffect(() =>
     {
@@ -22,10 +20,13 @@ const GameCanvas = ({ }: Props) =>
 
         const rect = canvasRef.current.getBoundingClientRect();
         
-        const game = new Game(canvasRef.current, rect.width, rect.height);
+        const game = new Game(
+            canvasRef.current, 
+            Math.floor(rect.width), 
+            Math.floor(rect.height)
+        );
 
-
-        setGame(game);
+        gameRef.current = game;
 
         function animate()
         {
@@ -34,7 +35,7 @@ const GameCanvas = ({ }: Props) =>
         }
         requestAnimationFrame(animate);
 
-    }, [ canvasRef.current ]);
+    }, []);
 
     useEffect(() =>
     {
@@ -42,12 +43,15 @@ const GameCanvas = ({ }: Props) =>
             !width ||
             !height) return;
 
-        canvasRef.current.width = width;
-        canvasRef.current.height = height;
-        
-        if (game) game.resize(width, height);
+        const w = Math.floor(width);
+        const h = Math.floor(height);
 
-    }, [ width, height, canvasRef.current ]);
+        canvasRef.current.width = w;
+        canvasRef.current.height = h;
+        
+        if (gameRef.current) gameRef.current.resize(w, h);
+
+    }, [ width, height ]);
 
     return (
         <div
@@ -57,9 +61,6 @@ const GameCanvas = ({ }: Props) =>
             <canvas
                 ref={canvasRef}
             />
-            {
-                game && <SolarSystem game={game} />
-            }
         </div>
     );
 }

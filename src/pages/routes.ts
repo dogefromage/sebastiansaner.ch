@@ -1,8 +1,6 @@
 import React from "react";
-import { getToPathname } from "react-router/lib/router";
-import About from "./About/About";
+import Contact from "./Contact/Contact";
 import Home from "./Home/Home";
-import NotFound from "./NotFound/NotFound";
 import Projects from "./Projects/Projects";
 
 interface RouteComponentProps
@@ -10,7 +8,7 @@ interface RouteComponentProps
     slugs: string[];
 }
 
-interface Route
+export interface Route
 {
     name: string;
     pathname: string;
@@ -29,18 +27,16 @@ const routes: Route[] =
         pathname: 'projects',
         component: Projects,
     },
+    // {
+    //     name: 'Blog',
+    //     pathname: 'blog',
+    //     component: Blog,
+    // },
     {
-        name: 'About',
-        pathname: 'about',
-        component: About,
+        name: 'Contact',
+        pathname: 'contact',
+        component: Contact,
     }
 ];
-
-export const notFoundRoute: Route =
-{
-    name: 'Not Found',
-    pathname: '404',
-    component: NotFound,
-}
 
 export default routes;

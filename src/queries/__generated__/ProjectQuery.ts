@@ -12,6 +12,13 @@ export interface ProjectQuery_project_content {
   json: any;
 }
 
+export interface ProjectQuery_project_mainImage {
+  __typename: "Asset";
+  url: string | null;
+  width: number | null;
+  height: number | null;
+}
+
 export interface ProjectQuery_project_sys {
   __typename: "Sys";
   id: string;
@@ -22,6 +29,7 @@ export interface ProjectQuery_project {
   title: string | null;
   description: string | null;
   content: ProjectQuery_project_content | null;
+  mainImage: ProjectQuery_project_mainImage | null;
   sys: ProjectQuery_project_sys;
 }
 
@@ -30,5 +38,5 @@ export interface ProjectQuery {
 }
 
 export interface ProjectQueryVariables {
-  id?: string | null;
+  id: string;
 }

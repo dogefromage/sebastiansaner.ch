@@ -1,0 +1,9 @@
+@import "../../index.scss";
+
+.card
+{
+    margin: 2rem 0;
+    padding: 1rem 1rem;
+
+    @include card;
+}

@@ -1,0 +1,29 @@
+@import "../../index.scss";
+
+.card
+{
+    margin: 2rem 0;
+    padding: 1rem 1rem;
+
+    @include card;
+
+    .links
+    {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        h2
+        {
+            margin-bottom: 0;
+        }
+    }
+
+    .impressum
+    {
+        h2
+        {
+            margin-top: 3rem;
+        }
+    }
+}

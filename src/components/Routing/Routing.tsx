@@ -1,12 +1,12 @@
-import React from 'react';
+import { animated, useSprings, useTransition } from '@react-spring/web';
+import { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { animated, useSprings } from 'react-spring';
+import { useNavigate } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
-import routes, { notFoundRoute } from '../../pages/routes';
+import NotFound from '../../pages/NotFound/NotFound';
+import routes, { Route } from '../../pages/routes';
 import { joinClasses } from '../../utils/joinClasses';
 import { useSlugs } from '../../utils/useSlugs';
-import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 import styles from './Routing.module.scss';
 
 const ROUTE_GAP = 6;
@@ -51,27 +51,35 @@ const Routing = ({ }: Props) =>
             const isCenter = index - routeIndex === 0;
 
             return {
-                // x: `-${ROUTE_WIDTHS[routeIndex]}ch`,
-                x: `calc(${offset}vw - 2ch)`,
+                x: `calc(${offset}vw)`,
                 opacity: isCenter ? 1 : 0,
             };
         })
     );
+    
+    const [ showSwipeTip, setShowSwipeTip ] = useState(isMobile)
 
-    const route = routes[routeIndex];
-    const RouteComponent = route.component;
+    const route: Route | undefined = routes[routeIndex];
+
+    useEffect(() =>
+    {
+        if (!route) navigate('not-found');
+    }, [ route ]);
 
     const swipeHandlers = useSwipeable({
-        onSwipedLeft: () => selectRoute(routeIndex + 1),
-        onSwipedRight: () => selectRoute(routeIndex - 1),
+        onSwipedLeft: () => 
+        {
+            selectRoute(routeIndex + 1);
+            setShowSwipeTip(false);
+        },
+        onSwipedRight: () => 
+        {
+            selectRoute(routeIndex - 1);
+            setShowSwipeTip(false);
+        }
     });
 
-
-    if (routeIndex < 0)
-    {
-        const NotFoundComponent = notFoundRoute.component;
-        return <NotFoundComponent slugs={[]}/>;
-    }
+    const RouteComponent = route?.component;
 
     return (
         <div
@@ -81,63 +89,80 @@ const Routing = ({ }: Props) =>
                 className={styles.router}
                 {...swipeHandlers}
             >
-            {
-                routes.map((route, index) =>
                 {
-                    const { opacity, x } = springs[index];
+                    showSwipeTip &&
+                    <div
+                        className={styles.swipeTip}
+                    >
+                        swipe...
+                    </div>
+                }
+                {
+                    routes.map((route, index) =>
+                    {
+                        const { opacity, x } = springs[index];
 
-                    const divStyle = isMobile ? { x } : {};
+                        const divStyle = isMobile ? { x } : {};
 
-                    return (
-                        <animated.div
-                            className={joinClasses(styles.routes, isMobile && styles.mobile_route)}
-                            onClick={() => 
-                            {
-                                if (index !== routeIndex) selectRoute(index);
-                            }}
-                            style={divStyle}
-                            key={route.pathname}
-                        >
-                            <animated.a
-                                style={{
-                                    opacity,
-                                }}
-                                className={styles.bracket_left}
+                        return (
+                            <animated.div
+                                className={joinClasses(styles.routes, isMobile && styles.mobile_route)}
                                 onClick={() => 
                                 {
-                                    if (index === routeIndex) selectRoute(routeIndex - 1);
+                                    if (index !== routeIndex) selectRoute(index);
                                 }}
+                                style={divStyle}
+                                key={route.pathname}
                             >
-                                {"<"}
-                            </animated.a>
-                            &nbsp;
-                            <animated.p
-                                style={{
-                                    opacity: opacity.to([0, 1], [0.2, 1]),
-                                }}
-                            >
-                                { route.name }
-                            </animated.p>
-                            &nbsp;
-                            <animated.a
-                                style={{
-                                    opacity,
-                                }}
-                                className={styles.bracket_right}
-                                onClick={() => 
-                                {
-                                    if (index === routeIndex) selectRoute(routeIndex + 1);
-                                }}
+                                <animated.a
+                                    style={{
+                                        opacity,
+                                    }}
+                                    className={styles.bracket_left}
+                                    onClick={() => 
+                                    {
+                                        if (index === routeIndex) selectRoute(routeIndex - 1);
+                                    }}
                                 >
-                                {"/>"}
-                            </animated.a>
-                            &nbsp;
-                        </animated.div>
-                    );
-                })
-            }
+                                    {"<"}
+                                </animated.a>
+                                &nbsp;
+                                <animated.p
+                                    style={{
+                                        opacity: opacity.to([0, 1], [0.2, 1]),
+                                    }}
+                                >
+                                    { route.name }
+                                </animated.p>
+                                &nbsp;
+                                <animated.a
+                                    style={{
+                                        opacity,
+                                    }}
+                                    className={styles.bracket_right}
+                                    onClick={() => 
+                                    {
+                                        if (index === routeIndex) selectRoute(routeIndex + 1);
+                                    }}
+                                    >
+                                    {"/>"}
+                                </animated.a>
+                                &nbsp;
+                            </animated.div>
+                        );
+                    })
+                }
             </div>
-            <RouteComponent slugs={remainingSlugs}/>
+            {
+                RouteComponent ? (
+                    <RouteComponent slugs={remainingSlugs}/>
+                ) : (
+                    <NotFound 
+                        lastTitle='Home'
+                        lastUrl='/'
+                    />
+                ) 
+            }
         </div>
     ) 
     

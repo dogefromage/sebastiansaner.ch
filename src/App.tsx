@@ -2,7 +2,7 @@ import { ApolloProvider } from '@apollo/client';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import createClient from './apolloClient';
-import DesktopPage from './components/Page/Page';
+import MainPage from './components/MainPage/MainPage';
 
 function App()
 {
@@ -11,7 +11,7 @@ function App()
     return (
         <ApolloProvider client={client}>
             <BrowserRouter>
-                <DesktopPage />    
+                <MainPage />    
             </BrowserRouter>
         </ApolloProvider>
     );

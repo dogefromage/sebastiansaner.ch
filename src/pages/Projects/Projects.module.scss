@@ -2,47 +2,45 @@
 
 .project_grid
 {
-    // best grid
-    // https://medium.com/the-non-traditional-developer/the-ultimate-responsive-grid-component-in-react-d4c72ebffb57
+    width: 100%;
 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    display: flex;
+    flex-direction: column;
 
-    padding-top: 2rem;
-
+    margin-top: 2rem;
     gap: 2rem;
+
+    $card-height: 200px;
 
     .project
     {
-        height: 380px;
-
         width: 100%;
+        height: $card-height;
 
         @include card;
 
-        display: flex;
-        flex-direction: column;
-
-        overflow: hidden;
-        transition: box-shadow 0.2s;
+        transition: transform 0.1s;
+        &:hover
+        {
+            transform: scale(1.05);
+        }
 
         cursor: pointer;
+        
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        overflow: hidden;
 
         .text
         {
             width: 100%;
-            height: 33%;
-
+            height: $card-height;
             padding: 1rem;
-
-            p
-            {
-                white-space: nowrap;
-                width: 100%;
-                overflow: hidden;
-              
-                text-overflow: ellipsis;
-            }
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .thumb
@@ -50,19 +48,79 @@
             width: 100%;
             height: 67%;
 
-            padding: 1rem;
+            // padding: 1rem;
 
             img
             {
                 width: 100%;
-                height: 100%;
+                height: $card-height;
                 object-fit: cover;
             }
         }
-
-        &:hover
-        {
-            box-shadow: 5px 5px 20px #00000022;
-        }
     }
 }
+
+// .project_grid
+// {
+//     // best grid
+//     // https://medium.com/the-non-traditional-developer/the-ultimate-responsive-grid-component-in-react-d4c72ebffb57
+
+//     display: grid;
+//     grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+
+//     padding-top: 2rem;
+
+//     gap: 2rem;
+
+//     .project
+//     {
+//         height: 380px;
+//         width: 100%;
+
+//         @include card;
+
+//         display: flex;
+//         flex-direction: column;
+//         overflow: hidden;
+
+//         cursor: pointer;
+        
+//         transition: transform 0.1s;
+//         &:hover
+//         {
+//             transform: scale(1.05);
+//         }
+
+//         .text
+//         {
+//             width: 100%;
+//             height: 33%;
+
+//             padding: 1rem;
+
+//             p
+//             {
+//                 white-space: nowrap;
+//                 width: 100%;
+//                 overflow: hidden;
+              
+//                 text-overflow: ellipsis;
+//             }
+//         }
+
+//         .thumb
+//         {
+//             width: 100%;
+//             height: 67%;
+
+//             padding: 1rem;
+
+//             img
+//             {
+//                 width: 100%;
+//                 height: 100%;
+//                 object-fit: cover;
+//             }
+//         }
+//     }
+// }

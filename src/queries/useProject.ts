@@ -13,6 +13,12 @@ query ProjectQuery($id: String!)
     {
       json
     }
+    mainImage
+    {
+      url
+      width
+      height
+    }
     sys
     {
         id
@@ -22,10 +28,13 @@ query ProjectQuery($id: String!)
 
 `;
 
-export function useProject(id: string): ProjectQuery_project | undefined
+export function useProject(id: string)
 {
     const { data, loading, error } = 
         useQuery<ProjectQuery, ProjectQueryVariables>(PROJECT_QUERY, { variables: { id } });
-
-    return data?.project!;
+    
+    return { 
+        project: data?.project,
+        loading,
+    }
 }

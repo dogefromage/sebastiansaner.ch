@@ -1,7 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { capitalize } from '../../utils/capitalize';
 import { useSlugs } from '../../utils/useSlugs';
+import { isMobile } from 'react-device-detect';
 
 import styles from './BreadCrumbs.module.scss';
 
@@ -15,8 +16,9 @@ interface Props
 
 const BreadCrumbs = ({ crumbs }: Props) =>
 {
-    // const slugs = useSlugs();
     const navigate = useNavigate();
+
+    if (isMobile) return null;
 
     return (
         <div
@@ -24,18 +26,14 @@ const BreadCrumbs = ({ crumbs }: Props) =>
         >
         {
             crumbs.map(slug =>
-                <a
+                <Link
                     className={styles.slug}
-                    onClick={e => 
-                    {
-                        e.preventDefault();
-                        
-                        if (slug.href) navigate(slug.href);
-                    }}
+                    to={slug.href  || location.pathname}
+                    key={`${slug.href}:${slug.name}`}
                 >
                     { `> ${slug.name}` }
                     &nbsp;
-                </a>
+                </Link>
             )
         }
         </div>

@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 
-
 export function useSlugs()
 {
     const location = useLocation();

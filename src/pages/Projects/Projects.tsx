@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { a, config, useTransition } from '@react-spring/web';
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
 import { useProjectList } from '../../queries/useProjectList';
 
@@ -13,9 +14,17 @@ interface Props
 
 const Projects = ({ slugs }: Props) =>
 {
-    const projectList = useProjectList();
-    const navigate = useNavigate();
+    const projectList = useProjectList().projects || [];
 
+    const projectTransitions = useTransition(Object.keys(projectList), 
+    {
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+        delay: (index: string) => parseInt(index) * 100,
+    })
+    
+    const navigate = useNavigate();
     const projectId = slugs[0];
 
     if (projectId && projectId.length)
@@ -31,35 +40,42 @@ const Projects = ({ slugs }: Props) =>
             className={styles.project_grid}
         >
         {
-            projectList.projects &&
-            projectList.projects.map(project =>
-                project &&
-                <div
-                    className={styles.project}
-                    key={project.sys.id}
-                    onClick={() =>
-                    {
-                        navigate(`projects/${project.sys.id}`)
-                    }}
-                >
-                    <div
-                        className={styles.text}
+            projectTransitions((style, projectIndex) =>
+            {
+                const project = projectList[parseInt(projectIndex)]
+
+                if (!project) return;
+
+                return project && (
+
+                    <a.div
+                        className={styles.project}
+                        key={project.sys.id}
+                        onClick={() =>
+                        {
+                            navigate(`projects/${project.sys.id}`)
+                        }}
+                        style={style}
                     >
-                        <h2>{ project.title }</h2>
-                        <p>{ project.description }</p>
-                    </div>
-                    {
-                        project.thumbnail &&
                         <div
-                            className={styles.thumb}
+                            className={styles.text}
                         >
-                            <img 
-                                src={project.thumbnail.url!}
-                            />
+                            <h2>{ project.title }</h2>
+                            <p>{ project.description }</p>
                         </div>
-                    }
-                </div>
-            )
+                        {
+                            project.thumbnail &&
+                            <div
+                                className={styles.thumb}
+                            >
+                                <img 
+                                    src={project.thumbnail.url!}
+                                />
+                            </div>
+                        }
+                    </a.div>
+                )
+            })
         }
         </div>
     </>)
