@@ -2,6 +2,8 @@
 
 @import 'react-reflex/styles.css';
 
+$bg-color: #edf5fb;
+
 html,
 body 
 {
@@ -10,8 +12,7 @@ body
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
         Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
-    background-color: #edf5fb;
-    // background-color: #eeeeee;
+    background-color: $bg-color;
 
     scroll-behavior: smooth;
 }

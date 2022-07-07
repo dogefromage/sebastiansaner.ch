@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import { isMobile } from 'react-device-detect';
+import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import GameCanvas from '../GameCanvas/GameCanvas';
 import Routing from '../Routing/Routing';
 import styles from './MainPage.module.scss';
-import { useSpring, animated, config } from '@react-spring/web'
-import { isMobile } from 'react-device-detect';
-import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 
 const DesktopPage = () =>
 {
     return (
         <ReflexContainer
             orientation='vertical'
-            className={styles.reflex_page}
+            className={styles.desktop_page}
         >
             <ReflexElement
                 className={styles.game}
@@ -32,70 +30,20 @@ const DesktopPage = () =>
     );
 }
 
-// const DesktopPage = () =>
-// {
-//     const [ showText, setShowText ] = useState(false);
-
-//     // const style = useSpring({
-//     //     flexBasis: showText ? '40%' : '60%',        
-//     // });
-
-//     const style = {
-//         flexBasis: '60%'
-//     };
-
-//     return (
-//         <div
-//             className={styles.desktop_page}
-//         >
-//             <animated.div
-//                 className={styles.game}
-//                 style={style}
-//                 onMouseUp={() => setShowText(false)}
-//             >
-//                 <GameCanvas />
-//             </animated.div>
-//             <div
-//                 className={styles.content}
-//                 onMouseUp={() => setShowText(true)}
-//             >
-//                 {/* <Title /> */}
-//                 <Routing />
-//             </div>
-//         </div>
-//     );
-// }
-
 const MobilePage = () =>
 {
-    const [ showText, setShowText ] = useState(false);
-
-    const style = useSpring({
-        height: showText ? '25vh' : '55vh',
-        config: config.default
-    });
-
     return (
         <div
             className={styles.mobile_page}
         >
-            <animated.div
-                className={styles.game}
-                style={style}
-            >
+            <div className={styles.game}>
                 <GameCanvas />
-            </animated.div>
-            <div
-                className={styles.content}
-                onScroll={e =>
-                {
-                    const div = e.target as HTMLDivElement;
-
-                    setShowText(div.scrollTop > 10)
-                }}
-            >
-                {/* <Title /> */}
-                <Routing />
+            </div>
+            <div className={styles.main}>
+                <div className={styles.click_through} />
+                <div className={styles.content}>
+                    <Routing />
+                </div>
             </div>
         </div>
     );

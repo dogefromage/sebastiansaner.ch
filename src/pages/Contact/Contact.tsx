@@ -10,8 +10,6 @@ interface Props
 
 const Contact = ({ }: Props) =>
 {
-
-
     return (
         <>
             <BreadCrumbs 
@@ -29,9 +27,9 @@ const Contact = ({ }: Props) =>
                 >
                     <h2>Links</h2>
                     <a
-                        href='mailto:seb.sa@eblcom.ch'
+                        href={'mailto:' + 'seb.sa' + '@' + 'eblcom.ch'}
                     >
-                        seb.sa@eblcom.ch
+                        {'seb.sa' + '@' + 'eblcom.ch'}
                     </a>
                     <a 
                         href='https://github.com/dogefromage'
