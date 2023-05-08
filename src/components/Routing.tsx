@@ -27,14 +27,13 @@ const Routing = ({}: Props) => {
     const remainingSlugs = slugs.slice(1);
 
     const routeIndex = navigationRoutes.findIndex(route => route.pathname === firstSlug);
-    const route: Route | undefined = routes[routeIndex];
 
     const selectRoute = (index: number) => {
-        const nextRoute = routes[index];
+        const nextRoute = navigationRoutes[index];
         navigate(nextRoute.pathname);
     }
 
-    const RouteComponent = route?.component;
+    const RouteComponent = routes[firstSlug]?.component;
 
     return (
         <Layout>
