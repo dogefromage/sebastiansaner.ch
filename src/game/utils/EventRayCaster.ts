@@ -50,7 +50,7 @@ export class EventRayCaster
                     {
                         if (!calledEventDispatchers.has(obj.uuid))
                         {
-                            console.log(obj.name);
+                            // console.log(obj.name);
 
                             obj.dispatchEvent({ 
                                 type: eventName, 

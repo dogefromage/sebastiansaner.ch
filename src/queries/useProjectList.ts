@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { ProjectListQuery, ProjectListQueryVariables } from "./__generated__/ProjectListQuery";
 
@@ -29,18 +29,16 @@ query ProjectListQuery($limit: Int, $skip: Int)
 
 const LIMIT = 10;
 
-export function useProjectList()
-{
-    const { data, loading, error, fetchMore } = 
-        useQuery<ProjectListQuery, ProjectListQueryVariables>(PROJECT_LIST_QUERY);
+export function useProjectList() {
+    const res = useQuery<ProjectListQuery, ProjectListQueryVariables>(PROJECT_LIST_QUERY);
+    const { data, loading, error, fetchMore } = res;
 
-    const more = useCallback(() =>
-    {
+    const more = useCallback(() => {
         // fetchMore()
-    }, [ fetchMore ]);
+    }, [fetchMore]);
 
     return {
         projects: data?.projectCollection?.items,
         more,
-    } 
+    }
 }

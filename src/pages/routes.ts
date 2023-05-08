@@ -1,42 +1,40 @@
 import React from "react";
-import Contact from "./Contact/Contact";
-import Home from "./Home/Home";
-import Projects from "./Projects/Projects";
+import Contact from "./Contact";
+import Home from "./Home";
+import Projects from "./Projects";
+import Imprint from "./Imprint";
 
-interface RouteComponentProps
-{
+export interface RouteComponentProps {
     slugs: string[];
 }
 
-export interface Route
-{
+export interface Route {
     name: string;
     pathname: string;
     component: React.FC<RouteComponentProps>;
 }
 
-const routes: Route[] = 
-[
-    {
+const routes = {
+    home: {
         name: 'Home',
-        pathname: '',
+        pathname: 'home',
         component: Home
     },
-    {
+    projects: {
         name: 'Projects',
         pathname: 'projects',
         component: Projects,
     },
-    // {
-    //     name: 'Blog',
-    //     pathname: 'blog',
-    //     component: Blog,
-    // },
-    {
+    contact: {
         name: 'Contact',
         pathname: 'contact',
         component: Contact,
-    }
-];
+    },
+    imprint: {
+        name: 'Contact',
+        pathname: 'contact',
+        component: Contact,
+    },
+}
 
 export default routes;

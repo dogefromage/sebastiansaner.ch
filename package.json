@@ -7,8 +7,8 @@
     "@contentful/rich-text-react-renderer": "^15.12.1",
     "@react-spring/web": "^9.4.5",
     "@tweenjs/tween.js": "^18.6.4",
-    "@types/react": "^18.0.8",
-    "@types/react-dom": "^18.0.3",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
@@ -18,14 +18,14 @@
     "react-scripts": "^5.0.1",
     "react-swipeable": "^7.0.0",
     "sass": "^1.52.3",
-    "three": "^0.141.0",
-    "typescript": "^4.6.4"
+    "styled-components": "^6.0.0-rc.1",
+    "three": "^0.141.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && cp _redirects build/_redirects",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
     "schema:download": "apollo service:download --endpoint=https://graphql.contentful.com/content/v1/spaces/yaiyfegwjzlh?access_token=NpFpzDQmwPLXLC9uZ0qjr_xNsPJuDbvtKshxx9dsd9U graphql-schema.json",
     "codegen": "npm run schema:download && apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --tagName=gql"
   },
@@ -43,8 +43,13 @@
   },
   "devDependencies": {
     "@types/node": "^16.11.32",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "@types/sass": "^1.43.1",
     "@types/three": "^0.139.0",
-    "apollo": "^2.33.10"
+    "@vitejs/plugin-react": "^4.0.0",
+    "apollo": "^2.33.10",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.2"
   }
 }

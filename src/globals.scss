@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Roboto+Mono&display=swap');
+@import 'react-reflex/styles.css';
+
+:root {
+    font-size: 16px;
+    --bg-color: #edf5fb;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+    background-color: var(--bg-color);
+
+    scroll-behavior: smooth;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@mixin card {
+}
+
+@mixin unselectable {
+    user-select: none;
+}
+
+.reflex-container.vertical>.reflex-splitter {
+    background-color: transparent !important;
+    width: 9px !important;
+    margin-left: -3.5px !important;
+    margin-right: -3.5px !important;
+    border-left: 3.5px solid transparent !important;
+    border-right: 3.5px solid transparent !important;
+}
+
+@keyframes swipeAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0;
+    }
+}

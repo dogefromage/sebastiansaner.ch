@@ -1,37 +1,30 @@
-@import "../../index.scss";
 
-.desktop_page
-{
+.desktop_page {
     width: 100%;
     height: 100vh !important;
 
-    .game
-    {
+    .game {
         flex-shrink: 0;
         background-color: #dddddd;
 
         overflow: hidden;
     }
 
-    .content
-    {
+    .content {
         flex-grow: 1;
         overflow-y: scroll;
         overflow-x: hidden;
-
-        padding: 5rem 3rem;
+        padding: 0 3rem;
     }
 }
 
-.mobile_page
-{   
+.mobile_page {
     z-index: 0;
     position: relative;
 
     width: 100%;
 
-    .game
-    {
+    .game {
 
         width: 100%;
         height: 60vh;
@@ -41,9 +34,8 @@
         top: 0;
         left: 0;
     }
-    
-    .main
-    {
+
+    .main {
         width: 100%;
         min-height: 100vh;
 
@@ -51,23 +43,21 @@
         flex-direction: column;
 
         pointer-events: none;
-        
-        .click_through
-        {
+
+        .click_through {
             width: 100%;
             height: 60vh;
         }
-        
-        .content
-        {
+
+        .content {
             width: 100%;
             flex-grow: 1;
 
-            padding: 2rem 1.5rem;
+            padding: 0rem 1.5rem;
             overflow-y: auto;
             overflow-x: hidden;
 
-            background-color: $bg-color;
+            background-color: var(--bg-color);
 
             pointer-events: all;
         }

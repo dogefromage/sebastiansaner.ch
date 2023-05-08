@@ -1,17 +1,14 @@
 import { ApolloProvider } from '@apollo/client';
-import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import createClient from './apolloClient';
+import useCreateClient from './useCreateClient';
 import MainPage from './components/MainPage/MainPage';
 
-function App()
-{
-    const client = createClient();
-
+function App() {
+    const client = useCreateClient();
     return (
         <ApolloProvider client={client}>
             <BrowserRouter>
-                <MainPage />    
+                <MainPage />
             </BrowserRouter>
         </ApolloProvider>
     );

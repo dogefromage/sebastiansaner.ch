@@ -1,7 +1,7 @@
 import { isMobile } from 'react-device-detect';
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
-import GameCanvas from '../GameCanvas/GameCanvas';
-import Routing from '../Routing/Routing';
+import GameCanvas from '../GameCanvas';
+import Routing from '../Routing';
 import styles from './MainPage.module.scss';
 
 const DesktopPage = () =>
