@@ -31,9 +31,9 @@ const routes = {
         component: Contact,
     },
     imprint: {
-        name: 'Contact',
-        pathname: 'contact',
-        component: Contact,
+        name: 'Imprint',
+        pathname: 'imprint',
+        component: Imprint,
     },
 }
 

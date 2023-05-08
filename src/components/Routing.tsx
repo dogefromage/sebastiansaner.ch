@@ -1,11 +1,11 @@
 import { animated, useSprings } from '@react-spring/web';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import { useNavigate } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
 import { styled } from 'styled-components';
 import NotFound from '../pages/NotFound';
-import routes, { Route } from '../pages/routes';
+import routes from '../pages/routes';
 import { useSlugs } from '../utils/useSlugs';
 import Layout from './Layout';
 
@@ -23,7 +23,7 @@ const Routing = ({}: Props) => {
     const navigate = useNavigate();
 
     const slugs = useSlugs();
-    const firstSlug = slugs[0] || '';
+    const firstSlug = slugs[0] || 'home';
     const remainingSlugs = slugs.slice(1);
 
     const routeIndex = navigationRoutes.findIndex(route => route.pathname === firstSlug);
