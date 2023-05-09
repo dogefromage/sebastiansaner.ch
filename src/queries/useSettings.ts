@@ -1,39 +1,27 @@
 import { gql, useQuery } from "@apollo/client";
-import { ProjectQuery, ProjectQueryVariables, ProjectQuery_project } from "./__generated__/ProjectQuery";
+import { SettingsQuery, SettingsQueryVariables } from "./__generated__/SettingsQuery";
 
-const PROJECT_QUERY = gql`
-
-query SettingsQuery
-{
-  project(id: $id)
-  {
-    title
-    description
-    content
-    {
+const SETTINGS_QUERY = gql`
+query SettingsQuery($settingsId: String!) {
+  settings(id: $settingsId) {
+    home {
       json
     }
-    mainImage
-    {
-      url
-      width
-      height
-    }
-    sys
-    {
-        id
+    imprint {
+      json
     }
   }
 }
-
 `;
 
-export function useProject(id: string) {
+const SETTINGS_SINGLETON = "2ISXn50zX7TdzKbxu7s3JO";
+
+export function useSettings() {
     const { data, loading, error } =
-        useQuery<ProjectQuery, ProjectQueryVariables>(PROJECT_QUERY, { variables: { id } });
+        useQuery<SettingsQuery, SettingsQueryVariables>(SETTINGS_QUERY, { variables: { settingsId: SETTINGS_SINGLETON } });
 
     return {
-        project: data?.project,
+        settings: data?.settings,
         loading,
     }
 }

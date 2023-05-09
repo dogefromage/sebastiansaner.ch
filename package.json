@@ -26,7 +26,7 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "schema:download": "apollo service:download --endpoint=https://graphql.contentful.com/content/v1/spaces/yaiyfegwjzlh?access_token=NpFpzDQmwPLXLC9uZ0qjr_xNsPJuDbvtKshxx9dsd9U graphql-schema.json",
+    "schema:download": "apollo service:download --endpoint=https://graphql.contentful.com/content/v1/spaces/yaiyfegwjzlh?access_token=2WxlSYGlDopCWACXGKBMd5cwjIt6eUY1-V4q3On0tkA graphql-schema.json",
     "codegen": "npm run schema:download && apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --tagName=gql"
   },
   "browserslist": {

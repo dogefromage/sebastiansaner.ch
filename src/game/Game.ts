@@ -171,7 +171,7 @@ export class Game
 
         switch (slug)
         {
-            case undefined:
+            case 'home':
                 vectorB = this.homePlanet.position;
                 break;
             case 'projects':
@@ -222,15 +222,11 @@ export class Game
         /**
          * routing
          */
-        let slugs = location.pathname.split('/').slice(1);
-        if (slugs[slugs.length - 1] === '') slugs = slugs.slice(0, -1);
 
-        const planetSlug = slugs[0];
+        const planetSlug = location.pathname.split('/')[1].trim() || 'home';
 
-        if (this.lastPlanetSlug !== planetSlug)
-        {
+        if (this.lastPlanetSlug !== planetSlug) {
             this.lastPlanetSlug = planetSlug;
-
             this.route(planetSlug);
         }
 

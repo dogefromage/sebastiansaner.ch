@@ -1,6 +1,8 @@
-import React from 'react';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { useMemo } from 'react';
 import BreadCrumbs from '../components/BreadCrumbs';
 import Title from '../components/Title';
+import { useSettings } from '../queries/useSettings';
 import CardDiv from '../styles/CardDiv';
 
 interface Props {
@@ -8,6 +10,13 @@ interface Props {
 }
 
 const Home = ({}: Props) => {
+    const { settings } = useSettings();
+
+    const json = settings?.home?.json;
+    const homeNode = useMemo(() => {
+        return documentToReactComponents(json);
+    }, [json]);
+
     return (
         <>
             <BreadCrumbs
@@ -19,9 +28,7 @@ const Home = ({}: Props) => {
             />
             <CardDiv>
                 <Title />
-                <p>
-                    Welcome to my personal landing page. Discover the solar system by dragging or zooming. Explore different planets by traversing through the webpage.
-                </p>
+                { homeNode }
             </CardDiv>
         </>
     )

@@ -11,7 +11,7 @@ const ProjectGridDiv = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 2rem;
+    margin: 2rem 0;
     gap: 2rem;
 `;
 
@@ -24,6 +24,9 @@ const ProjectCardDiv = styled(CardDiv)`
     grid-template-columns: 1fr 1fr;
     overflow: hidden;
 
+    padding: 0;
+    margin: 0;
+    
     transition: transform 0.1s;
     cursor: pointer;
 
@@ -43,11 +46,11 @@ const ProjectCardDiv = styled(CardDiv)`
 
     .thumb {
         width: 100%;
-        height: 67%;
+        height: 100%;
         
         img {
             width: 100%;
-            height: $card-height;
+            height: ${CARD_HEIGHT}px;
             object-fit: cover;
         }
     }

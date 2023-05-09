@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Icon = styled.i`
-    font-family: monospace;
-    font-size: 1.5rem;  
-`;
+const BackLinkDiv = styled.div`
+    font-size: 1.2rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+`
 
 interface Props {
     to: string;
@@ -13,9 +16,12 @@ interface Props {
 const BackLink = ({ to }: Props) => {
     return (
         <Link to={to}>
-            <Icon
-                className="fa-solid fa-chevron-left"
-            />
+            <BackLinkDiv>
+                <i
+                    className="fa-solid fa-arrow-left"
+                />
+                Back
+            </BackLinkDiv>
         </Link>
     );
 }
