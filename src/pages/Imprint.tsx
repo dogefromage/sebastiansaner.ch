@@ -16,11 +16,6 @@ const Imprint = ({}: Props) => {
                 ]}
             />
             <CardDiv>
-                <p>
-                    Sebastian Saner<br />
-                    Rebenweg 15<br />
-                    4413 Büren CH
-                </p>
             </CardDiv>
         </>
     );

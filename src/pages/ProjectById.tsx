@@ -7,13 +7,9 @@ import { useProject } from '../queries/useProject';
 import NotFound from './NotFound';
 import { styled } from 'styled-components';
 import CardDiv from '../styles/CardDiv';
+import BackLink from '../components/BackLink';
 
 const ProjectCardDiv = styled(CardDiv)`
-    .back {
-        font-family: monospace;
-        font-size: 1.5rem;
-    }
-
     overflow: hidden;
 
     .img_container {
@@ -67,12 +63,7 @@ const Project = ({ projectId }: Props) => {
                 <AnimatedProjectCardDiv
                     style={style}
                 >
-                    <Link
-                        className={'back'}
-                        to='projects'
-                    >
-                        {"<"}
-                    </Link>
+                    <BackLink to='projects' />
                     {
                         project?.mainImage &&
                         <div

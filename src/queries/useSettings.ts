@@ -3,7 +3,7 @@ import { ProjectQuery, ProjectQueryVariables, ProjectQuery_project } from "./__g
 
 const PROJECT_QUERY = gql`
 
-query ProjectQuery($id: String!)
+query SettingsQuery
 {
   project(id: $id)
   {
